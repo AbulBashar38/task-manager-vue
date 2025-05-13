@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { RouterLink } from 'vue-router'
-import { SidebarItemProps } from '../../interfaces/Sidebar.ts'
+import type { SidebarItemProps } from '../../interfaces/Sidebar.ts'
 
 defineProps<{
   item: SidebarItemProps

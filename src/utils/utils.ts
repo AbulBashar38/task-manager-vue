@@ -1,10 +1,11 @@
 // useFormValidation.js
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
+import type { IFormErrors, ITask } from '../interfaces/Board'
 
-export function useFormValidation(formData) {
-  const errors = ref({})
+export function useFormValidation(formData: ITask) {
+  const errors = ref<IFormErrors>({})
 
-  const validateTitle = (title) => {
+  const validateTitle = (title: string): string | null => {
     if (!title.trim()) {
       return 'Title is required.'
     }
@@ -14,7 +15,7 @@ export function useFormValidation(formData) {
     return null
   }
 
-  const validateDes = (description) => {
+  const validateDes = (description: string): string | null => {
     if (!description.trim()) {
       return 'Description is required.'
     }
@@ -23,14 +24,14 @@ export function useFormValidation(formData) {
     }
     return null
   }
-  const validateType = (type) => {
+  const validateType = (type: string): string | null => {
     if (!type.trim()) {
       return 'Type is required.'
     }
 
     return null
   }
-  const validateStatus = (status) => {
+  const validateStatus = (status: string): string | null => {
     if (!status.trim()) {
       return 'Status is required.'
     }
@@ -38,7 +39,7 @@ export function useFormValidation(formData) {
     return null
   }
 
-  const validateForm = async () => {
+  const validateForm = async (): Promise<boolean> => {
     errors.value = {}
     errors.value.title = validateTitle(formData.title)
     errors.value.description = validateDes(formData.description)
@@ -50,32 +51,32 @@ export function useFormValidation(formData) {
   }
 
   // Optional: Real-time validation as the user types
-  watch(
-    () => formData.title,
-    (newValue) => {
-      errors.value.name = validateTitle(newValue)
-    },
-  )
+  // watch(
+  //   () => formData.title,
+  //   (newValue) => {
+  //     errors.value.name = validateTitle(newValue)
+  //   },
+  // )
 
-  watch(
-    () => formData.description,
-    (newValue) => {
-      errors.value.email = validateDes(newValue)
-    },
-  )
+  // watch(
+  //   () => formData.description,
+  //   (newValue) => {
+  //     errors.value.email = validateDes(newValue)
+  //   },
+  // )
 
-  watch(
-    () => formData.type,
-    (newValue) => {
-      errors.value.age = validateType(newValue)
-    },
-  )
-  watch(
-    () => formData.status,
-    (newValue) => {
-      errors.value.age = validateStatus(newValue)
-    },
-  )
+  // watch(
+  //   () => formData.type,
+  //   (newValue) => {
+  //     errors.value.age = validateType(newValue)
+  //   },
+  // )
+  // watch(
+  //   () => formData.status,
+  //   (newValue) => {
+  //     errors.value.age = validateStatus(newValue)
+  //   },
+  // )
 
   return {
     errors,

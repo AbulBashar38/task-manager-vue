@@ -5,4 +5,4 @@ interface SidebarItemProps {
   route: string
 }
 
-export { SidebarItemProps }
+export type { SidebarItemProps }

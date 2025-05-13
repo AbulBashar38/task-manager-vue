@@ -9,5 +9,10 @@ interface ITask {
   status: string
   type: string
 }
-
-export { ITask, ITaskStatus }
+interface IFormErrors {
+  title?: string | null
+  description?: string | null
+  type?: string | null
+  status?: string | null
+}
+export type { IFormErrors, ITask, ITaskStatus }

@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { ITask } from '../../interfaces/Board.ts'
+interface ITypeColors {
+  [key: string]: string
+}
+import type { ITask } from '../../interfaces/Board.ts'
 const { task } = defineProps<{
   task: ITask
   clickEdit: (task: ITask) => void
   clickDelete: (task: ITask) => void
 }>()
-const typeColors = {
+const typeColors: ITypeColors = {
   'Design system': 'bg-green-600',
   Development: 'bg-blue-600',
   Typography: 'bg-red-600',
 }
-const getTypeColor = (type: string) => {
+const getTypeColor = (type: string): string => {
   return typeColors[type] || 'bg-gray-600'
 }
-const typeColor = getTypeColor(task.type)
+const typeColor: string = getTypeColor(task.type)
 </script>
 
 <template>

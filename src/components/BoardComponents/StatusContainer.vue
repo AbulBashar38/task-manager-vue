@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineProps, ref } from 'vue'
-import ITaskStatus, { type ITask } from '../../interfaces/Board.ts'
+import type { ITask, ITaskStatus } from '../../interfaces/Board.ts'
 import { useAllTaskStore } from '../../state_management/store.ts'
 import ConfirmationModal from '../shared/ConfirmationModal.vue'
 import ModalContainer from '../shared/ModalContainer.vue'
@@ -9,7 +9,7 @@ import TaskCard from './TaskCard.vue'
 const { status } = defineProps<{
   status: ITaskStatus
 }>()
-const clickedTask = ref(null)
+const clickedTask = ref<ITask | null>(null)
 const showModal = ref(false)
 const showConfirmationModal = ref(false)
 
